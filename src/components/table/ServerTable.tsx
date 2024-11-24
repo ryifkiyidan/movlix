@@ -17,8 +17,6 @@ import TBody from '@/components/table/TBody';
 import THead from '@/components/table/THead';
 import TOption from '@/components/table/TOption';
 
-import { PaginatedApiResponse } from '@/types/api';
-
 export type ServerTableState = {
   globalFilter: string;
   pagination: PaginationState;
@@ -36,7 +34,8 @@ type ServerTableProps<T extends object> = {
   data: T[];
   header?: React.ReactNode;
   isLoading: boolean;
-  meta: PaginatedApiResponse<T>['meta'] | undefined;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  meta: any;
   tableState: ServerTableState;
   setTableState: SetServerTableState;
   omitSort?: boolean;
