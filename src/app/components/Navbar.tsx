@@ -28,10 +28,10 @@ function Navbar({ withBackButton, className }: NavbarProps) {
       title: 'Explore',
       href: NAVIGATION.explore,
     },
-    {
-      title: 'Contact',
-      href: NAVIGATION.contact,
-    },
+    // {
+    //   title: 'About',
+    //   href: NAVIGATION.about,
+    // },
   ];
 
   return (
