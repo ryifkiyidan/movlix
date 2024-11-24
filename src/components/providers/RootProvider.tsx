@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { AppProgressBar } from 'next-nprogress-bar';
+import { Suspense } from 'react';
 
 import api from '@/lib/axios';
 
@@ -27,17 +28,22 @@ const queryClient = new QueryClient({
 
 export function RootProvider({ children }: { children: React.ReactNode }) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <div>
-        <DismissableToast />
-        {children}
-        <AppProgressBar
-          shallowRouting
-          options={{ showSpinner: false }}
-          color='#99060E'
+    <Suspense fallback={<>...</>}>
+      <QueryClientProvider client={queryClient}>
+        <div>
+          <DismissableToast />
+          {children}
+          <AppProgressBar
+            shallowRouting
+            options={{ showSpinner: false }}
+            color='#99060E'
+          />
+        </div>
+        <ReactQueryDevtools
+          initialIsOpen={false}
+          buttonPosition='bottom-left'
         />
-      </div>
-      <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </Suspense>
   );
 }
